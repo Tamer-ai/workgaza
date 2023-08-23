@@ -17,6 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone');
+            // ليه حطيت ع الي تحت null..؟
+            //  لانه مش اجباري يكونو بنعملو لقدام بصفحة التسجيل بس الي فوق اجباري هالحين
+            $table->string('address')->nullable();
+            $table->string('image')->nullable();
+            $table->text('bio')->nullable();
+            $table->foreignId('company_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
