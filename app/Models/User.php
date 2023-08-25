@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Faker\Provider\ar_EG\Company;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,4 +44,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    function company(){
+
+        return $this->belongsTo(Company::class)->withDefault();
+    }
+    function skills(){
+
+        return $this->belongsToMany(Skill::class);
+    }
+    function proposals(){
+
+        return $this->hasMany(Proposal::class);
+    }
+    function my_projects(){
+
+        return $this->hasMany(UserProject::class);
+    }
+    function reviews(){
+
+        return $this->hasMany(CompanyReview::class);
+    }
 }
+
